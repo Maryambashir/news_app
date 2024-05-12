@@ -2,47 +2,31 @@ import { SelectOptionType } from "../types/SelectOptionType";
 
 export const newsCategories : SelectOptionType[] = [
     {
-        label: 'Art',
-        value: 'Art'
+        label: 'Business',
+        value: 'business'
     },
     {
         label: 'Technology',
-        value: 'Technology'
+        value: 'technology'
     },
     {
         label: 'Health',
-        value: 'Health'
-    },
-    {
-        label: 'Food',
-        value: 'Food'
-    },
-    {
-        label: 'Travel',
-        value: 'Travel'
-    },
-    {
-        label: 'Fashion',
-        value: 'Fashion'
-    },
-    {
-        label: 'Education',
-        value: 'Education'
+        value: 'health'
     },
     {
         label: 'Entertainment',
-        value: 'Entertainment'
+        value: 'entertainment'
     },
     {
-        label: 'Finance',
-        value: 'Finance'
+        label: 'General',
+        value: 'general'
     },
     {
-        label: 'Environment',
-        value: 'Environment'
+        label: 'Science',
+        value: 'science'
     },
     {
-        label: 'Fitness',
-        value: 'Fitness'
+        label: 'Sports',
+        value: 'sports'
     }
 ]
