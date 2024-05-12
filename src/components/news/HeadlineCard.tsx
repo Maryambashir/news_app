@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { NewsType } from '../../types/NewsType';
 
-const HeadlineCard = ({ title, description, url, urlToImage, publishedAt }: NewsType) => {
+const HeadlineCard = ({ title, url, publishedAt } : any) => {
     
     const truncateTitle = (title: string, maxLength: number) => {
         if (title.length > maxLength) {

@@ -3,6 +3,7 @@ import Layout from './components/layout/Layout';
 import NotFoundPage from './pages/error/NotFoundPage';
 import NewsFeed from './pages/newsfeed/NewsFeed';
 import Setting from './pages/setting/Setting';
+import Search from './pages/search/Search';
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<NewsFeed />} />
-          <Route path="/search" element={<><section><h1>search</h1></section></>} />
+          <Route path="/search" element={<Search />} />
           <Route path="/settings" element={<Setting />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />

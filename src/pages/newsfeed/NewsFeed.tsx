@@ -1,19 +1,29 @@
 import { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
-import { NewsType } from "../../types/NewsType";
+import { GuardianNewsType, NewsType } from "../../types/NewsType";
 import SpotlightNews from "../../components/news/SpotlightNews";
 import NewsCard from "../../components/news/NewsCard";
 import { useNewsApi } from "../../hooks/newsApi/useNewApi";
 import HeadlineCard from "../../components/news/HeadlineCard";
+import { useNyTimesApi } from "../../hooks/timesApi/useNyTimesApi";
+import { useGuardiansApi } from "../../hooks/guardiansApi/useGuardiansApi";
 
 const NewsFeed = () => {
-  const { getNews } = useNewsApi();
   const [news, setNews] = useState<Awaited<Array<NewsType>>>([]);
+  const [headlines, setHeadlines] = useState<Awaited<Array<GuardianNewsType>>>([]);
+  const { getNews } = useNewsApi();
+  const { getNYNews } = useNyTimesApi();
+  const { getGuardianNews } = useGuardiansApi();
+
 
   useEffect(() => {
     (async () => {
       const newsApiOrg = await getNews();
-      setNews(newsApiOrg);
+      const nyNews = await getNYNews();
+      const guardianNews = await getGuardianNews();
+      
+      setNews([...newsApiOrg, ...nyNews]);
+      setHeadlines(guardianNews)
     })();
   }, []);
 
@@ -27,6 +37,7 @@ const NewsFeed = () => {
             url={news[0]?.url}
             urlToImage={news[0]?.urlToImage}
             publishedAt={news[0]?.publishedAt}
+            author={news[0]?.author}
           />
           <Grid item container lg={12} spacing={2}>
             {news.map((newsItem, index) =>
@@ -38,6 +49,7 @@ const NewsFeed = () => {
                     url={newsItem.url}
                     urlToImage={newsItem.urlToImage}
                     publishedAt={newsItem.publishedAt}
+                    author={newsItem.author}
                   />
                 </Grid>
               ) : null
@@ -45,18 +57,15 @@ const NewsFeed = () => {
           </Grid>
         </Grid>
         <Grid item container lg={3} spacing={1}>
-          {news.map((newsItem, index) =>
-            index > 1 && index <= 10 ? (
+          {headlines.map((headline, index) => (
               <Grid item lg={12} key={index}>
                 <HeadlineCard
-                  title={newsItem.title}
-                  description={newsItem.description}
-                  url={newsItem.url}
-                  urlToImage={newsItem.urlToImage}
-                  publishedAt={newsItem.publishedAt}
+                  title={headline.webTitle}
+                  url={headline.webUrl}
+                  publishedAt={headline.webPublicationDate}
                 />
               </Grid>
-            ) : null
+            )
           )}
         </Grid>
       </Grid>
