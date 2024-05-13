@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, CardContent, Typography, Grid, FormControl, InputLabel, Select, MenuItem, Button, Box, Chip } from '@mui/material';
 import { styled } from '@mui/system';
 import { newsAuthors } from '../../data/newsAuthors';
@@ -74,7 +74,7 @@ const Setting = () => {
                         <Typography variant="body1" gutterBottom>
                             Customize your Newsfeed by choosing the right preferences.
                         </Typography>
-                        <FormControl fullWidth style={{ marginBottom: '1rem' }}>
+                        <FormControl fullWidth sx={{ my: 2 }} variant='standard'>
                             <InputLabel id="author-select-label">Authors</InputLabel>
                             <Select
                                 labelId="author-select-label"
@@ -96,7 +96,7 @@ const Setting = () => {
                                 ))}
                             </Select>
                         </FormControl>
-                        <FormControl fullWidth style={{ marginBottom: '1rem' }}>
+                        <FormControl fullWidth sx={{ my: 2 }} variant='standard'>
                             <InputLabel id="category-select-label">Categories</InputLabel>
                             <Select
                                 labelId="category-select-label"
@@ -119,7 +119,7 @@ const Setting = () => {
                                 ))}
                             </Select>
                         </FormControl>
-                        <FormControl fullWidth style={{ marginBottom: '1rem' }}>
+                        <FormControl fullWidth sx={{ my: 2 }} variant='standard'>
                             <InputLabel id="source-select-label">Sources</InputLabel>
                             <Select
                                 labelId="source-select-label"
@@ -127,8 +127,13 @@ const Setting = () => {
                                 multiple
                                 value={selectedSources}
                                 onChange={handleSourceChange}
-                                renderValue={(selected) => selected.join(', ')}
-                            >
+                                renderValue={(selected) => (
+                                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                                        {selected.map((value) => (
+                                            <Chip key={value} label={value} />
+                                        ))}
+                                    </Box>
+                                )}                            >
                                 {newsSources.map((source, index) => (
                                     <MenuItem key={`source-${index}`} value={source.value}>
                                         {source.label}
