@@ -10,9 +10,9 @@ import { setPreferences } from '../../redux/reducer/preferences';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { PreferenceState } from '../../types/PreferencesType';
+import { textStyle } from '../../commonStyles';
 
 const StyledCard = styled(Card)({
-    maxWidth: 600,
     borderRadius: 12,
     boxShadow: '0px 6px 18px rgba(0, 0, 0, 0.06)',
     '&:hover': {
@@ -64,14 +64,14 @@ const Setting = () => {
     }
 
     return (
-        <Grid container justifyContent="center" alignItems="center" style={{ minHeight: '100vh' }}>
+        <Grid container justifyContent="center" alignItems="center" style={{ minHeight: '90vh' }}>
             <Grid item xs={10} md={6}>
                 <StyledCard>
                     <CardContent>
-                        <Typography variant="h4" gutterBottom>
+                        <Typography variant="h4" gutterBottom sx={textStyle}>
                             Settings Page
                         </Typography>
-                        <Typography variant="body1" gutterBottom>
+                        <Typography variant="body1" gutterBottom sx={textStyle}>
                             Customize your Newsfeed by choosing the right preferences.
                         </Typography>
                         <FormControl fullWidth sx={{ my: 2 }} variant='standard'>
