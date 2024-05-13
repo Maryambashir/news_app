@@ -62,7 +62,6 @@ const Search = () => {
           <TextField
             fullWidth
             label="Search"
-            variant="outlined"
             value={searchQuery}
             onChange={(event) => setSearchQuery(event.target.value)}
           />
@@ -70,9 +69,7 @@ const Search = () => {
         <Grid item lg={2}>
           <TextField
             fullWidth
-            label="Date"
             type="date"
-            variant="outlined"
             value={date}
             onChange={(event) => setDate(event.target.value)}
           />

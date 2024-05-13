@@ -41,7 +41,7 @@ const NewsFeed = () => {
           />
           <Grid item container lg={12} spacing={2}>
             {news.map((newsItem, index) =>
-              index > 1 && index <= 4 ? (
+              index > 1 ? (
                 <Grid item key={index} lg={4}>
                   <NewsCard
                     title={newsItem.title}
@@ -56,7 +56,7 @@ const NewsFeed = () => {
             )}
           </Grid>
         </Grid>
-        <Grid item container lg={3} spacing={1}>
+        <Grid item container lg={3} spacing={1} sx={{display: 'block'}}>
           {headlines.map((headline, index) => (
               <Grid item lg={12} key={index}>
                 <HeadlineCard

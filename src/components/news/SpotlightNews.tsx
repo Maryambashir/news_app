@@ -1,12 +1,13 @@
 import { Card, CardContent, CardMedia, Typography, Box } from '@mui/material';
 import { NewsType } from '../../types/NewsType';
+import { boxStyle, textStyle } from '../../commonStyles';
 
 const SpotlightNews = ({ title, description, url, urlToImage, publishedAt }: NewsType) => {
   return (
-    <Card variant="outlined">
+    <Card variant="outlined" sx={{...boxStyle, width: '99%'}}>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
-          <Typography gutterBottom variant="h5" noWrap>
+          <Typography gutterBottom variant="h5" noWrap sx={textStyle}>
             <a href={url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
               {title}
             </a>

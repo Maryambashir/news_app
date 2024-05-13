@@ -15,8 +15,6 @@ const StyledCard = styled(Card)({
     maxWidth: 600,
     borderRadius: 12,
     boxShadow: '0px 6px 18px rgba(0, 0, 0, 0.06)',
-    transition: 'box-shadow 0.3s ease-in-out',
-
     '&:hover': {
         boxShadow: '0px 12px 24px rgba(0, 0, 0, 0.1)',
     },
