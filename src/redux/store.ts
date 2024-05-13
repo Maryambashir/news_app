@@ -1,12 +1,46 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, combineReducers, Reducer } from '@reduxjs/toolkit';
 import preferenceReducer from './reducer/preferences';
+import { PreferenceState } from '../types/PreferencesType';
 
-const store = configureStore({
-  reducer: {
-    preferences: preferenceReducer
-  }
+export interface RootState {
+  preferences: PreferenceState;
+}
+
+const rootReducer: Reducer<RootState> = combineReducers({
+  preferences: preferenceReducer
 });
 
-export type RootState = ReturnType<typeof store.getState>;
+const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem('reduxState');
+    if (serializedState === null) {
+      return undefined;
+    }
+    return JSON.parse(serializedState);
+  } catch (err) {
+    return undefined;
+  }
+};
+
+const saveState = (state: RootState) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem('reduxState', serializedState);
+  } catch {
+    console.error('unable to save state')
+  }
+};
+
+const persistedState = loadState();
+
+const store = configureStore({
+  reducer: rootReducer,
+  preloadedState: persistedState 
+});
+
+store.subscribe(() => {
+  saveState(store.getState());
+});
+
 
 export default store;
